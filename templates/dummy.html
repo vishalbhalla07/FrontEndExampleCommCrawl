@@ -1,0 +1,81 @@
+{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dummy</title>
+</head>
+
+{% block content %}
+<body>
+<h1>Results page :  </h1>
+
+{% if pgnumber in ["pg1"]%}
+<ol>
+    {% for item in globallist[:10] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg2"] %}
+<ol>
+    {% for item in globallist[10:20] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg3"] %}
+<ol>
+    {% for item in globallist[20:30] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg4"] %}
+<ol>
+    {% for item in globallist[30:40] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg5"] %}
+<ol>
+    {% for item in globallist[40:50] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+
+{% endif %}
+
+    {{ super() }}
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <li>
+      <a href={{ prevlink }} aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+
+    </li>
+      {% if pgnumber in ["pg1"] %}
+    <li class="active"><a href="#">1</a></li>
+    <li><a href="pg2">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+
+    {% elif pgnumber in ["pg2"] %}
+    <li><a href="pg1">1</a></li>
+    <li class="active"><a href="#">2</a></li>
+    <li><a href="pg3">3</a></li>
+    <li><a href="pg4">4</a></li>
+    <li><a href="pg5">5</a></li>
+    <li>
+        {% endif %}
+
+      <a href={{ nextlink }} aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+</ul>
+</nav>
+
+</body>
+</html>
+{% endblock %}

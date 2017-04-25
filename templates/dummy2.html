@@ -1,0 +1,81 @@
+{% extends "bootstrap/base.html" %}
+<link rel="stylesheet" type="text/css" href="http://localhost:5000/static/css/demo.css" />
+{% block content %}
+
+<body>
+<h1>Results page :  </h1>
+<img src="http://localhost:5000/static/img/football.jpg" />
+{% if pgnumber in ["pg1"]%}
+<ol>
+    {% for item in globallist[:10] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg2"] %}
+<ol>
+    {% for item in globallist[10:20] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg3"] %}
+<ol>
+    {% for item in globallist[20:30] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg4"] %}
+<ol>
+    {% for item in globallist[30:40] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{% elif  pgnumber in ["pg5"] %}
+<ol>
+    {% for item in globallist[40:50] %}
+            <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+
+{% endif %}
+
+    {{ super() }}
+<div class="navbar">
+        <div class="container">
+    <nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href={{ prevlink }} aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+
+    </li>
+    <li class="active"><a href="pg1">1</a></li>
+    <li><a href="pg2">2</a></li>
+    <li><a href="pg3">3</a></li>
+    <li><a href="pg4">4</a></li>
+    <li><a href="pg5">5</a></li>
+    <li><a href={{ nextlink }} aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+</ul>
+    </nav>
+        </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script>
+$(document).ready(function () {
+        var url = window.location;
+        $('.navbar .pagination').find('.active').removeClass('active');
+        $('.navbar .pagination li a').each(function () {
+            if (this.href == url) {
+                $(this).parent().addClass('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>
+{% endblock %}
